@@ -24,22 +24,30 @@ public class WakeChrome {
 				
 		//Verification to know whether we are not getting redirected anywhere else. This will print hit URL
 		System.out.println(driver.getCurrentUrl());
-		
-		//Enter Username
-		//driver.findElement(By.xpath("//Input[@name='email']")).sendKeys("aakashdahake");
-		
-		//Enter Password
-		//driver.findElement(By.name("pass")).sendKeys("testpassword");
-		
-		//Click L0gin button
-		//driver.findElement(By.xpath("//Input[@value='Log In']")).click();
 				
+		//Check Radio button
+		driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).click();
+		
 		//Select a item from Static Dropdown 
 		Select s = new Select(driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")));
 		s.selectByValue("AED");
 		s.selectByIndex(1);
 		s.selectByVisibleText("USD"); 
 		
+		//Handle Dynamic Drop Down
+		driver.findElement(By.xpath("//*[@id='ctl00_mainContent_ddl_originStation1_CTXT']")).click(); //Click on Dynamic Dropdown
+		driver.findElement(By.xpath("//*[@id='dropdownGroup1']/div/ul[2]/li[6]/a")).click(); //Click on Element of Dynamic Dropdwn
+		
+		// As drop down is same for both but value will be different, We have added [2] to tell code to select value from next drop down
+		driver.findElement(By.xpath("(//a[@value='GOI'])[2]")).click();
+		
+		//Calender entry selection on continuos popup
+		driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div[1]/table/tbody/tr[3]/td[1]/a")).click();
+		
+		//Click check_box
+		driver.findElement(By.id("ctl00_mainContent_chk_IndArm")).click();
+		System.out.println(driver.findElement(By.id("ctl00_mainContent_chk_IndArm")).isSelected()); // TO check whether it isselected
+	
 		
 		
 		
